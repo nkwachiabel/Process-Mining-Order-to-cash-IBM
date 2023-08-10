@@ -1,4 +1,4 @@
-# Process Mining : Order-to-Cash (Trade Payables) Process Discovery
+# Process Mining : Order-to-Cash Process Discovery and Analysis
 
 Most companies have information systems that record activities of interests, such as the registration of a new customer, the sale of a product, the approval of a purchase system, the processing of a payment system, etc. All of these activities result in one or more events being recorded in some information system. These events are usually used for record-keeping, accounting, auditing, etc.
 
