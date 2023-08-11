@@ -80,7 +80,7 @@ The gain a proper understanding of the process, the order was broken down into t
   * TLC Optical Ground cables with 49 orders has 15 variants. The top 3 variants account for 55.1% of the orders and are all rejected cases. Variant 4 represents the highest variant with completed cases and follows the following sequence Line creation ->  Header Block Removed -> Address missing block set -> LgstCheckOnConfDat Set -> Sched.Line Block Removed -> Address missing block removed -> LgstCheckOnConfDat Removed -> Delivery -> Good Issue
   * TLC Connectivity with 85 orders has 17 variants. The first two variants accounts for 72.94% of the cases. The first variant is associated with Customer 1.
   
-* <b>Process flow visualisation</b>: The process flow graph shows the process flow from the start to finish for the filtered product hierarchy. The process starts from Line creation and either ends with Goods Issue or if the order is rejected, Schedule Line Rejected. Looking at the process flow, it appears that when a line is created, some blocks are set automatically for some customers. They include Header block, LgstCheckOnConfDat, and Credit block. These blocks are removed by the various users in the system.
+* <b>Process flow visualisation</b>: The process flow graph shows the process flow from the start to finish for the filtered product hierarchy. The Graphviz library was used to automatically generate a visual process model based on the event log data. The process starts from Line creation and either ends with Goods Issue or if the order is rejected, Schedule Line Rejected. Looking at the process flow, it appears that when a line is created, some blocks are set automatically for some customers. They include Header block, LgstCheckOnConfDat, and Credit block. These blocks are removed by the various users in the system.
 
 * <b>Transition matrix</b>: This shows how events transition from one activity to another. The row shows the start activity while the columns shows the preceeding activities. The following were noted:
 
@@ -100,47 +100,62 @@ The gain a proper understanding of the process, the order was broken down into t
      * Goods were issued even when the Document blocked for credit activity was set. This occured in 3 different orders from 1 customer (Customer 206). For these 3 cases, the document was released for credit by User51 (Customer service rep) initially in May, but was later blocked for credit in December of the same year by User33 (Master Scheduler) and the Goods were still issued in December by User66 (Customer service rep). This indicates a lack of control in the system.
  3.  <b>Delivery:</b> There were 5 cases where Delivery activity was done even immediately after the Address missing block was set. A further look into these cases showed that the Address missing block was removed before the Good Issue activity was done. This can be because the Delivery activity was an automatic activity.
 
+### Other findings
 * <b>Rejected order</b>: The product with the highest number of rejected order is TLC Optical Ground Cables with 57% of the orders rejected. The reason for the rejections were not stated for root cause analysis, while TLC Connectivity has no rejected order. One notable thing about the rejected order is that none of the orders were rejected after delivery was made.
 
 * Some events are carried out by robots in the process. Asides Delivery and Good Issue, robot can create line, remove header block and set LgstCheckOnConfDat in TLC Optical Cables hierarchy
 
+* The process benchmarking page helps to compare different process variants using various filters; Order type, Product hierarchy, Delayed order or not. It also contains some metrics such as the median order fulfilment time, on-time order rate, etc. This shows the comparison between the most occuring variants in TLC Optical Cables and TLC Optical Fibres product. We can see that while the TLC optical median fulfilment time for Variant 1 is 60 days, it is 41 days for TLC Optical Fibres. A possible explanation might be the inclusion of Header Block Removed activity in TLC Optical Cables product. 
 
-
-The Graphviz library was used to automatically generate a visual process model based on the event log data. 
-1. <b>Variant analysis</b>: This variant analysis shows how frequently a particular process is followed. There was a total 193 variants with the top 5 variants acconting for 93% of the cases.
-2. <b>Events chart</b>: This shows when the events occur by the time of the week. It shows that most fines are created either on a Friday or Saturday (TGIF😄), payments were made on either a Monday or Tuesday and fines are sent for credit collection mostly on Tuesday or Sunday.
-3. <b>Process graph</b>: The process graph shows how the activity flows from the start of a procurement process to the end. From the process graph, all cases starts with the Creation of a fine. For Variant 2 cases, the offender pays the fine immediately it is created. Variant 2 accounts for approximately 36% of all cases. This maybe because for cases in Variants 2, these fines are paid immediately they are given. For other variants, after the case is created, it is sent to the offender and they are either paid or sent for credit collection.
-4. <b>Events transition matrix</b>: The transition matrix shows how the events are been handed over from one to another and how frequently this occurs.
-   
-### Process deviation
-* <b>Dismissal variables used</b>: The dismissal variable based on research to be used are either NIL (when the fine is created and should bot be changed unless there is a successful appeal), G (when there is a successful appeal and the case is dismissed by the judge), and # (when there is a successful appeal and the case is dismissed by the prefect). However, there were other dismissal variable that were found in the event log. They are detailed below:
-  * <b>Dismissal variable 4</b>: This dismissal variable appears in only 2 cases and used in one article (142). Used by 2 users (User 53 and User 11) for fines created in August and December 2004 and occurs in 2 variants (Variant 3 and Variant 4)
-  * <b>Dismissal variable @</b>: This dismissal variable appears in 9 cases and two variants (Variant 1 and variant 8), used by 7 users (User 537, 550, 35, 8, 29, 31, and 536). All fines were created between January 3 and June 3 2000. Article 7, 157 & 158.
-  * <b>Dismissal variable D</b>: Used once for the case created on 2 June 2011 by User 848. Appears in one case. Aritcle 158.
-  * <b>Dismissal variable Z</b>: Used once for the case created on June 16 2000 by user 811.
-* <b>Create fine dismissal variable</b>: When a fine is created, the dismissal value is NIL. While the NIL variable is used for almost all cases in this activity, the dismissal variable 4, was used 2x, @ was used 9x, D and Z were used 1x.
-* <b>Successful dismissal</b>: As highlighted above, there are some cases where the successful dismissal variable is used (G and #) but those cases do not end with Send appeal to judge or prefecture.
-* <b>Receive result appeal from prefecture</b>: This activity is usually done when the appeal to the prefecture was not successful and should have a NIL dismissal variable. Below, there are 24 cases where a # variable was used instead.
-* <b>Add penalty to Send for credit collection</b>: For all cases which went transitioned from <i>Add penalty</i> to <i>Send for credit collection</i>, the least duration was 273 days; significantly higher than the expected 180 days. This shows either a lack of monitoring system or the prefects do not monitor the fines if they have been paid or not for onward forwarding to the credit agencies.
-* There were two cases (S66168 and N35881) where the fines were fully paid, but it was still sent to the credit agency for collection. Both fines were paid in 2002, but they were sent to the credit collection on 10 January 2004. That's about 2 years later.
-### Other findings
-* There are some users that carry out particular events in batches. For example, users 538, 550 and 536 performed the Send fine activity for 259, 195 and 176 cases respectively on 19 May 2003. Also, the three users performed the Insert fine notification activity 100, 69 and 65 times respectively on 25 May 2003.
 
 ## Timing analysis
 ![alt text](https://github.com/nkwachiabel/Process-Mining-Road-Traffic-Fine-Management/blob/main/Images/Timing%20analysis.jpg?raw=true)
 
-This analysis was done to confirm if there are deviations regarding the time when the events should be performed. Some performance indicators were developed.
-1. From research, each fine created should be completed within six months; they should either be paid, sent for credit collection or dismissed. The first test that was done was relating to the duration of each case. It indicated that out of 128,268 cases, 75,259 (59% of cases) were completed after 180 days.
-2. Looking at the individual cases, the send for credit collection event is where more time was spent. It takes an average of 525 days before a fine is sent for credit collection. This is way too long. One reason for this can be that the person who raised the fine is not monitoring the fines to adhere to the time limit.
-3. One thing to note is that the Add penalty activity is always followed. Looks like an automatic event that happens when it is up to 60 days since the fine was created but payment has not been made.
-4. There are 37,266 cases where the fine was sent after 90 days. Out of these fines which were delayed, 70% of them were sent to the credit collection agency. This might be because the offenders are already aware that these fines were sent out late and there would be no repercussion for not paying. The traffic prefects should be trained/reminded of this rule to avoid offenders getting away with fines. This also incurs cost to the management by paying for postal expenses which would not be recovered.
-5. There are 53,309 fines which have not been fully paid, but have not been sent to the credit collection agency.
-6. The 60 days time limit for appeals are not been adhered to by the offenders. Of the fines appealed to the judge, 36% of them were done after 60 days, while for those appealed to the prefect, 81% of them were done after 60 days. We are not sure if this time indicated when the actual appeal was made or when the prefect recorded this in the system. Either way, this shows a deviation from the expected process.
+This analysis was done to analyse the bottlenecks in the process relating to timing. To know how long a process should last, we used the median duration of a case as the performance indicator. In the overall order, the median duration was 40 days. About 49.58% of cases did not meet this time target. When broken down into the various product hierarchy, the median duration were as follows.
 
-## Case details
+| Product hierarchy | Median duration | % of cases greater than median duration | Bottleneck | % of Ontime orders |
+| :--- | :---: | :---: | :--- | :---: |
+| TLC Optical Cables | 55 days | 49.77% | Address missing Block Removed | 95% |
+| TLC Optical Ground Cables | 136 days | 42.86% | Sched.Line Changed Delivery Date | 82% |
+| TLC Optical Fibres | 39 days | 49.87% | Header Block Set | 94% |
+| TLC Connectivity | 81 days | 49.41% | Sched.Line Changed Delivery Date | 100% |
+
+From the median duration above, this indicates that there is room for improvement to ensure faster delivery/goods issue. The bottleneck regarding address missing block can be addressed by making sure that all customers in the database have an updated address. This activity takes an average of 19 days to be rectified, making this duration longer.
+
+For sched.line changed delivery date, this is not clear if the change is coming from the customer or the company. If coming from the company, this means that the company needs to improve its inventory planning to avoid this from happening.
+
+## Users analysis
 ![alt text](https://github.com/nkwachiabel/Process-Mining-Road-Traffic-Fine-Management/blob/main/Images/Case%20details%20page.jpg?raw=true)
 
-This dashboard shows information relating to a particular case by using the filter at the top left of the screen.
+Users were analysed to understand who does what activity in the process. This analysis was focused on the human users and was broken down into the different product hierarchies. The graph at the extreme left shows the users and their roles in the company. This shows that in all the products, there are so many people acting as Customer Service Representatives compared to other roles.
+* In TLC Connectivity, there are only two roles; Logistic operator(User12) and Customer service rep (6 users). The segregation of duties shows that the customer service rep can perform all activities while the Logistic operator only performs the Header Block Removed activity. The most active customer service rep is User 20.
+* In TLC OPtical cables, there are more roles; Material planner (User75), IT HQ Logistic (User74), External fiber sales logistic (User38), D.C. Manager, Corporate credit manager (User57), Accessories manager, credit analyst (User58, User59), customer service manager (User13, User19,User28), logistic operator (User12, User29, User34, User70), customer service rep (21 users), data engineer manager, design engineer, intercompany planner (User21), local IT (User25, User36, User41), master scheduler (User31, User32, User33), production planner (User42), logistic manager (User35, User44), buyer (User49), Cut line team leader (User72) and product manager (User48). No user handles more than two roles. This shows appropriate segregation of duties and no one user has too much workload. There are 8 users where the role == empty. They handle the Delivery, CTR Block removed activities. This analysis shows that there is a user tagged Buyer and the only actvity this user does is to reschedule the delivery date. The customer service rep can do all activities.
+* TLC Optical fibres has 4 active roles; NA Fiber Sales and service manager (User16), External fiber sales logistic (User38), customer service representative (User43, User51, User9) and corporate credit manager (User57). Similar to the above, the customer service rep does all activities. The corporate credit manager releases document for credit, external fiber sales logistic handles the sched.line changed delivery date and LgstCheckOnConfDat removed activity. In this product, User9 does majority of the work.
+* Finally, TLC Optical ground cables has 8 active roles; master scheduler, logistic operator, external fiber sales logistic, data engineer manager, design engineer, customer service rep, customer service manager. As usual, customer service rep performs all activities, customer service manager does only Line creation, etc.
+* The Handover of work between users shows how tasks are handed over between the various roles. For example, in the above, the customer service manager works only with the customer service rep, while the customer service rep handsover work to everyother person except the external fiber sales logistic.
+
+
+## Customer details
+![alt text](https://github.com/nkwachiabel/Process-Mining-Road-Traffic-Fine-Management/blob/main/Images/Case%20details%20page.jpg?raw=true)
+
+This page shows information relating to a particular customer by using the filter at the top left of the screen.
+
+## Order details
+![alt text](https://github.com/nkwachiabel/Process-Mining-Road-Traffic-Fine-Management/blob/main/Images/Case%20details%20page.jpg?raw=true)
+
+This page shows information relating to a particular case by using the filter at the top right of the screen.
+
+## Uncompleted cases
+![alt text](https://github.com/nkwachiabel/Process-Mining-Road-Traffic-Fine-Management/blob/main/Images/Case%20details%20page.jpg?raw=true)
+
+This page shows information relating to incomplete cases. These are cases which starts from Line creation but does not end in Good issue or is not rejected. From the eventlog, there are 8,908 uncompleted orders with total value of $1,150.69m. We can further split this uncompleted orders into two categories; Services and Products. 
+
+* The Service category refers to those orders which relates to service delivery. There are two products here; TLC Services and TLC Other. They are a total of 191 orders. The only activity done is Line creation and they have been open for a while. The total net value is $0.11m. For this products, they will remain open until the service contract is ended.
+* The Product category to the products identified in the process analysis; Optical cables, Optical fibres, Connectivity and Optical ground cables. They contain 8,717 cases. In some of these cases, the only activity done is the Line creation activity and this is done across over 120 customers.
+* The total number of orderd which do not have Line creation as the latest activity is 5,568. LgstCheckOnConfDat Removed is the highest last activity which amounts to 37% of these orders, followed by Delivery (34.63%) and Sched.Line Changed Delivery Date (13%).
+* This page can be used to track open orders to monitor cases which are over their expected days.
+
+5,568
 
 # Process improvement
 Based on the analysis, areas for improvement were identified such as:
