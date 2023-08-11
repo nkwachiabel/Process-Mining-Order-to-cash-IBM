@@ -85,7 +85,8 @@ The gain a proper understanding of the process, the order was broken down into t
 * <b>Transition matrix</b>: This shows how events transition from one activity to another. The row shows the start activity while the columns shows the preceeding activities. The following were noted:
 
   - <b>Repeated actvities:</b> There are some activities that are done repeatedly.
-    | No. | Activity | Occurrence | Product hierarchy | No. of customers | No. of orders |
+
+| No. | Activity | Occurrence | Product hierarchy | No. of customers | No. of orders |
 | :--- | :--- | :---: | :--- | :---: | :---: |
 | 1 | Document released for credit | 11 |TLC Optical Cables | 7 | 11 |
 | 2 | Address mising block removed | 5 | TLC Optical Cables | 1 | 1 |
