@@ -73,14 +73,11 @@ Regarding activities, the Activities by user types table shows the various activ
 ![alt text]()
 The gain a proper understanding of the process, the order was broken down into the 4 distinct product hierarchy. In understanding the process, 3 different analysis was carried out; (i) variant analysis, (ii) process flow and (iii) transition matrix.
 * <b>Variant analysis</b>: The variant analysis starts by identifying the trace of activities in sequential order that each order request follows. After this, similar traces were grouped into process variants. This analysis, broken down into the various product hierarchy shows the following:
+  * TLC Optical Cables with 12,250 orders has 726 variants. Variant 1 accounts for 38.51% of the variants and follows the following sequence Line creation -> Header Block Removed -> LgstCheckOnConfDat Removed -> Delivery -> Good Issue.
+  * TLC Optical Fibres with 8,775 orders has 68 variants
+  * TLC Optical Ground cables with 49 orders has 15 variants.
+  * TLC Connectivity with 85 orders has 17 variants
   
-| Product Hierarchy | No. of order | No. of variants |
-| :------------- |:-------------:| :-----:|
-| TLC Optical Cables | 12,250 | 726 |
-| TLC Optical Fibres | 8,775 | 68 |
-| TLC Optical Ground Cables | 49 | 15 |
-| TLC Connectivity | 85 | 17 |
-
 
 * <b>Process flow visualisation</b>: The process flow graph shows the process flow from the start to finish for the filtered product hierarchy.
 * <b>Transition matrix</b>: This shows how events transition from one activity to another. The row shows the start activity while the columns shows the preceeding activities.
