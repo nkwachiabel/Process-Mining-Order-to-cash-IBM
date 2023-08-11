@@ -84,7 +84,7 @@ The gain a proper understanding of the process, the order was broken down into t
 
 * <b>Transition matrix</b>: This shows how events transition from one activity to another. The row shows the start activity while the columns shows the preceeding activities. The following were noted:
 
-  * <b>Repeated actvities:</b> There are some activities that are done repeatedly.
+  - <b>Repeated actvities:</b> There are some activities that are done repeatedly.
 
 | No. | Activity | Occurrence | Product hierarchy | No. of customers | No. of orders |
 | :--- | :--- | :---: | :--- | :---: | :---: |
@@ -95,13 +95,13 @@ The gain a proper understanding of the process, the order was broken down into t
 
 From the above, these activities are all repeated on the TLC Optical Cables product. Shows that there are potential areas for improvement
 
-  * <b>Goods Issue</b> 
+  - <b>Goods Issue</b> 
     * Goods were issued despite Address missing block was set 3x. This occured in 3 orders with 3 different customers. Looking at the process, these orders
     * Goods were issued even when the Document blocked for credit activity was set. This occured in 3 different orders from 1 customer (Customer 206). For these 3 cases, the document was released for credit by User51 (Customer service rep) initially in May, but was later blocked for credit in December of the same year by User33 (Master Scheduler) and the Goods were still issued in December by User66 (Customer service rep). This indicates a lack of control in the system.
 
-  * <b>Delivery</b> There were 5 cases where Delivery activity was done even immediately after the Address missing block was set. A further look into these cases showed that the Address missing block was removed before the Good Issue activity was done. This can be because the Delivery activity was an automatic activity.
+  - <b>Delivery</b> There were 5 cases where Delivery activity was done even immediately after the Address missing block was set. A further look into these cases showed that the Address missing block was removed before the Good Issue activity was done. This can be because the Delivery activity was an automatic activity.
 
-*<b>Rejected order</b>: The product with the highest number of rejected order is TLC Optical Ground Cables with 57% of the orders rejected. The reason for the rejections were not stated for root cause analysis, while TLC Connectivity has no rejected order. One notable thing about the rejected order is that none of the orders were rejected after delivery was made.
+* <b>Rejected order</b>: The product with the highest number of rejected order is TLC Optical Ground Cables with 57% of the orders rejected. The reason for the rejections were not stated for root cause analysis, while TLC Connectivity has no rejected order. One notable thing about the rejected order is that none of the orders were rejected after delivery was made.
 
 * Some events are carried out by robots in the process. Asides Delivery and Good Issue, robot can create line, remove header block and set LgstCheckOnConfDat in TLC Optical Cables hierarchy
 
