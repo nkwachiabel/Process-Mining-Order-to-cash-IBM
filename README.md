@@ -71,17 +71,40 @@ Regarding activities, the Activities by user types table shows the various activ
 
 ## Process discovery based on event log data
 ![alt text]()
+
+This page helps in analysing the process. It contains various filters including product hierarchy, order type and customer.
 The gain a proper understanding of the process, the order was broken down into the 4 distinct product hierarchy. In understanding the process, 3 different analysis was carried out; (i) variant analysis, (ii) process flow and (iii) transition matrix.
 * <b>Variant analysis</b>: The variant analysis starts by identifying the trace of activities in sequential order that each order request follows. After this, similar traces were grouped into process variants. This analysis, broken down into the various product hierarchy shows the following:
-  * TLC Optical Cables with 12,250 orders has 726 variants. Variant 1 accounts for 38.51% of the variants and follows the following sequence Line creation -> Header Block Removed -> LgstCheckOnConfDat Removed -> Delivery -> Good Issue.
-  * TLC Optical Fibres with 8,775 orders has 68 variants
-  * TLC Optical Ground cables with 49 orders has 15 variants.
-  * TLC Connectivity with 85 orders has 17 variants
+  * TLC Optical Cables with 12,250 orders has 726 variants. Variant 1 accounts for 38.51% of the orders and follows the following sequence Line creation -> Header Block Removed -> LgstCheckOnConfDat Removed -> Delivery -> Good Issue.
+  * TLC Optical Fibres with 8,775 orders has 68 variants. Variant 1 accounts for 71% of the orders and follows the following sequence Line creation -> LgstCheckOnConfDat Removed -> Delivery -> Good Issue. (notice that the Header Block Removed activity is not included here)
+  * TLC Optical Ground cables with 49 orders has 15 variants. The top 3 variants account for 55.1% of the orders and are all rejected cases. Variant 4 represents the highest variant with completed cases and follows the following sequence Line creation ->  Header Block Removed -> Address missing block set -> LgstCheckOnConfDat Set -> Sched.Line Block Removed -> Address missing block removed -> LgstCheckOnConfDat Removed -> Delivery -> Good Issue
+  * TLC Connectivity with 85 orders has 17 variants. The first two variants accounts for 72.94% of the cases. The first variant is associated with Customer 1.
   
+* <b>Process flow visualisation</b>: The process flow graph shows the process flow from the start to finish for the filtered product hierarchy. The process starts from Line creation and either ends with Goods Issue or if the order is rejected, Schedule Line Rejected. Looking at the process flow, it appears that when a line is created, some blocks are set automatically for some customers. They include Header block, LgstCheckOnConfDat, and Credit block. These blocks are removed by the various users in the system.
 
-* <b>Process flow visualisation</b>: The process flow graph shows the process flow from the start to finish for the filtered product hierarchy.
-* <b>Transition matrix</b>: This shows how events transition from one activity to another. The row shows the start activity while the columns shows the preceeding activities.
+* <b>Transition matrix</b>: This shows how events transition from one activity to another. The row shows the start activity while the columns shows the preceeding activities. The following were noted:
 
+* <b>Repeated actvities:</b> There are some activities that are done repeatedly.
+
+| No. | Activity | Occurrence | Product hierarchy | No. of customers | No. of orders |
+| :--- | :--- | :---: | :--- | :---: | :---: |
+| 1 | Document released for credit | 11 |TLC Optical Cables | 7 | 11 |
+| 2 | Address mising block removed | 5 | TLC Optical Cables | 1 | 1 |
+| 3 | CTR Block Removed | 58 | TLC Optical Cables | 5 | 14 |
+| 4 | Sched.Line Changed Delivery Date | 476 | TLC Optical Cables | 48 | 379 |
+
+From the above, these activities are all repeated on the TLC Optical Cables product. Shows that there are potential areas for improvement
+
+* <b>Goods Issue</b> 
+    * Goods were issued despite Address missing block was set 3x. This occured in 3 orders with 3 different customers. Looking at the process, these orders
+    * Goods were issued even when the Document blocked for credit activity was set. This occured in 3 different orders from 1 customer (Customer 206). For these 3 cases, the document was released for credit by User51 (Customer service rep) initially in May, but was later blocked for credit in December of the same year by User33 (Master Scheduler) and the Goods were still issued in December by User66 (Customer service rep). This indicates a lack of control in the system.
+
+
+* <b>Delivery</b> There were 5 cases where Delivery activity was done even immediately after the Address missing block was set. A further look into these cases showed that the Address missing block was removed before the Good Issue activity was done. This can be because the Delivery activity was an automatic activity.
+
+*<b>Rejected order</b>: The product with the highest number of rejected order is TLC Optical Ground Cables with 57% of the orders rejected. The reason for the rejections were not stated for root cause analysis, while TLC Connectivity has no rejected order. One notable thing about the rejected order is that none of the orders were rejected after delivery was made.
+
+* Some events are carried out by robots in the process. Asides Delivery and Good Issue, robot can create line, remove header block and set LgstCheckOnConfDat in TLC Optical Cables hierarchy
 
 The Graphviz library was used to automatically generate a visual process model based on the event log data. 
 1. <b>Variant analysis</b>: This variant analysis shows how frequently a particular process is followed. There was a total 193 variants with the top 5 variants acconting for 93% of the cases.
