@@ -70,7 +70,7 @@ The pie chart shows the number of orders by product hierarchy. TLC Optical Cable
 Regarding activities, the Activities by user types table shows the various activities and broken down into Human/Robot. The activity <b>Schedule Line Rejected</b> has no user type. This is because when an order is rejected, the User_Type column is empty. While the net value of the 21,159 orders are 241.83m, they contain 2,488 rejected orders amounting to $62.57m with more rejects coming from TLC Optical Cables and no reject in TLC Connectivity.
 
 ## Process discovery based on event log data
-![alt text]()
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Process%20details.jpg?raw=true)
 
 This page helps in analysing the process. It contains various filters including product hierarchy, order type and customer.
 The gain a proper understanding of the process, the order was broken down into the 4 distinct product hierarchy. In understanding the process, 3 different analysis was carried out; (i) variant analysis, (ii) process flow and (iii) transition matrix.
@@ -85,6 +85,7 @@ The gain a proper understanding of the process, the order was broken down into t
 * <b>Transition matrix</b>: This shows how events transition from one activity to another. The row shows the start activity while the columns shows the preceeding activities. The following were noted:
 
 1. <b>Repeated actvities:</b> There are some activities that are done repeatedly.
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Repeated%20activities.jpg?raw=true)
 
 | No. | Activity | Occurrence | Product hierarchy | No. of customers | No. of orders |
 | :--- | :--- | :---: | :--- | :---: | :---: |
@@ -125,7 +126,7 @@ From the median duration above, this indicates that there is room for improvemen
 For sched.line changed delivery date, this is not clear if the change is coming from the customer or the company. If coming from the company, this means that the company needs to improve its inventory planning to avoid this from happening.
 
 ## Users analysis
-![alt text](https://github.com/nkwachiabel/Process-Mining-Road-Traffic-Fine-Management/blob/main/Images/Case%20details%20page.jpg?raw=true)
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Timing%20analysis.jpg?raw=true)
 
 Users were analysed to understand who does what activity in the process. This analysis was focused on the human users and was broken down into the different product hierarchies. The graph at the extreme left shows the users and their roles in the company. This shows that in all the products, there are so many people acting as Customer Service Representatives compared to other roles.
 * In TLC Connectivity, there are only two roles; Logistic operator(User12) and Customer service rep (6 users). The segregation of duties shows that the customer service rep can perform all activities while the Logistic operator only performs the Header Block Removed activity. The most active customer service rep is User 20.
@@ -136,17 +137,17 @@ Users were analysed to understand who does what activity in the process. This an
 
 
 ## Customer details
-![alt text](https://github.com/nkwachiabel/Process-Mining-Road-Traffic-Fine-Management/blob/main/Images/Case%20details%20page.jpg?raw=true)
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Customer%20details.jpg?raw=true)
 
 This page shows information relating to a particular customer by using the filter at the top left of the screen.
 
 ## Order details
-![alt text](https://github.com/nkwachiabel/Process-Mining-Road-Traffic-Fine-Management/blob/main/Images/Case%20details%20page.jpg?raw=true)
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Order%20details.jpg?raw=true)
 
 This page shows information relating to a particular case by using the filter at the top right of the screen.
 
-## Uncompleted cases
-![alt text](https://github.com/nkwachiabel/Process-Mining-Road-Traffic-Fine-Management/blob/main/Images/Case%20details%20page.jpg?raw=true)
+## Open orders
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Open%20orders.jpg?raw=true)
 
 This page shows information relating to incomplete cases. These are cases which starts from Line creation but does not end in Good issue or is not rejected. From the eventlog, there are 8,908 uncompleted orders with total value of $1,150.69m. We can further split this uncompleted orders into two categories; Services and Products. 
 
@@ -154,8 +155,6 @@ This page shows information relating to incomplete cases. These are cases which 
 * The Product category to the products identified in the process analysis; Optical cables, Optical fibres, Connectivity and Optical ground cables. They contain 8,717 cases. In some of these cases, the only activity done is the Line creation activity and this is done across over 120 customers.
 * The total number of orderd which do not have Line creation as the latest activity is 5,568. LgstCheckOnConfDat Removed is the highest last activity which amounts to 37% of these orders, followed by Delivery (34.63%) and Sched.Line Changed Delivery Date (13%).
 * This page can be used to track open orders to monitor cases which are over their expected days.
-
-5,568
 
 # Process improvement
 Based on the analysis, areas for improvement were identified such as:
