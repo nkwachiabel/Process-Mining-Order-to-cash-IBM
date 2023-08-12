@@ -61,7 +61,7 @@ The event log was reviewed to ensure the data contained were okay to use for pro
 
 # Output and Visualisations
 ## Data overview
-![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Data%20overview.jpg?raw=true)
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/main/Images/Data%20overview.jpg?raw=true)
 
 This page gives an overview of the dataset. It shows the number of orders, activities and events. It also highlights the net value of these order requests and number of process variants. The clustered column chart at the top right shows the number of orders per year and month. We can see that there were many orders in January 2016 and these orders reduced a lot from July 2017. It is also important to mention here that the TLC Connectivity product started in January 2017.
 
@@ -70,7 +70,7 @@ The pie chart shows the number of orders by product hierarchy. TLC Optical Cable
 Regarding activities, the Activities by user types table shows the various activities and broken down into Human/Robot. The activity <b>Schedule Line Rejected</b> has no user type. This is because when an order is rejected, the User_Type column is empty. While the net value of the 21,159 orders are 241.83m, they contain 2,488 rejected orders amounting to $62.57m with more rejects coming from TLC Optical Cables and no reject in TLC Connectivity.
 
 ## Process discovery based on event log data
-![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Process%20details.jpg?raw=true)
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/main/Images/Process%20details.jpg?raw=true)
 
 This page helps in analysing the process. It contains various filters including product hierarchy, order type and customer.
 The gain a proper understanding of the process, the order was broken down into the 4 distinct product hierarchy. In understanding the process, 3 different analysis was carried out; (i) variant analysis, (ii) process flow and (iii) transition matrix.
@@ -85,7 +85,7 @@ The gain a proper understanding of the process, the order was broken down into t
 * <b>Transition matrix</b>: This shows how events transition from one activity to another. The row shows the start activity while the columns shows the preceeding activities. The following were noted:
 
 1. <b>Repeated actvities:</b> There are some activities that are done repeatedly.
-![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Repeated%20activities.jpg?raw=true)
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/main/Images/Repeated%20activities.jpg?raw=true)
 
 | No. | Activity | Occurrence | Product hierarchy | No. of customers | No. of orders |
 | :--- | :--- | :---: | :--- | :---: | :---: |
@@ -110,7 +110,7 @@ The gain a proper understanding of the process, the order was broken down into t
 
 
 ## Timing analysis
-![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Timing%20analysis.jpg?raw=true)
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/main/Images/Timing%20analysis.jpg?raw=true)
 
 This analysis was done to analyse the bottlenecks in the process relating to timing. To know how long a process should last, we used the median duration of a case as the performance indicator. In the overall order, the median duration was 40 days. About 49.58% of cases did not meet this time target. When broken down into the various product hierarchy, the median duration were as follows.
 
@@ -126,7 +126,7 @@ From the median duration above, this indicates that there is room for improvemen
 For sched.line changed delivery date, this is not clear if the change is coming from the customer or the company. If coming from the company, this means that the company needs to improve its inventory planning to avoid this from happening.
 
 ## Users analysis
-![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Users%20analysis.jpg?raw=true)
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/main/Images/Users%20analysis.jpg?raw=true)
 
 Users were analysed to understand who does what activity in the process. This analysis was focused on the human users and was broken down into the different product hierarchies. The graph at the extreme left shows the users and their roles in the company. This shows that in all the products, there are so many people acting as Customer Service Representatives compared to other roles.
 * In TLC Connectivity, there are only two roles; Logistic operator(User12) and Customer service rep (6 users). The segregation of duties shows that the customer service rep can perform all activities while the Logistic operator only performs the Header Block Removed activity. The most active customer service rep is User 20.
@@ -137,17 +137,17 @@ Users were analysed to understand who does what activity in the process. This an
 
 
 ## Customer details
-![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Customer%20details.jpg?raw=true)
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/main/Images/Customer%20details.jpg?raw=true)
 
 This page shows information relating to a particular customer by using the filter at the top left of the screen.
 
 ## Order details
-![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Order%20details.jpg?raw=true)
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/main/Images/Order%20details.jpg?raw=true)
 
 This page shows information relating to a particular case by using the filter at the top right of the screen.
 
 ## Open orders
-![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Open%20orders.jpg?raw=true)
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/main/Images/Open%20orders.jpg?raw=true)
 
 This page shows information relating to incomplete cases. These are cases which starts from Line creation but does not end in Good issue or is not rejected. From the eventlog, there are 8,908 uncompleted orders with total value of $1,150.69m. We can further split this uncompleted orders into two categories; Services and Products. 
 
