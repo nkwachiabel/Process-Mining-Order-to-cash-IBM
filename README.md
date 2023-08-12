@@ -61,7 +61,7 @@ The event log was reviewed to ensure the data contained were okay to use for pro
 
 # Output and Visualisations
 ## Data overview
-![alt text]()
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Data%20overview.jpg?raw=true)
 
 This page gives an overview of the dataset. It shows the number of orders, activities and events. It also highlights the net value of these order requests and number of process variants. The clustered column chart at the top right shows the number of orders per year and month. We can see that there were many orders in January 2016 and these orders reduced a lot from July 2017. It is also important to mention here that the TLC Connectivity product started in January 2017.
 
