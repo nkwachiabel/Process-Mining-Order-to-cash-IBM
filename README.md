@@ -61,7 +61,7 @@ The event log was reviewed to ensure the data contained were okay to use for pro
 
 # Output and Visualisations
 ## Data overview
-![alt text]()
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Data%20overview.jpg?raw=true)
 
 This page gives an overview of the dataset. It shows the number of orders, activities and events. It also highlights the net value of these order requests and number of process variants. The clustered column chart at the top right shows the number of orders per year and month. We can see that there were many orders in January 2016 and these orders reduced a lot from July 2017. It is also important to mention here that the TLC Connectivity product started in January 2017.
 
@@ -70,7 +70,7 @@ The pie chart shows the number of orders by product hierarchy. TLC Optical Cable
 Regarding activities, the Activities by user types table shows the various activities and broken down into Human/Robot. The activity <b>Schedule Line Rejected</b> has no user type. This is because when an order is rejected, the User_Type column is empty. While the net value of the 21,159 orders are 241.83m, they contain 2,488 rejected orders amounting to $62.57m with more rejects coming from TLC Optical Cables and no reject in TLC Connectivity.
 
 ## Process discovery based on event log data
-![alt text]()
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Process%20details.jpg?raw=true)
 
 This page helps in analysing the process. It contains various filters including product hierarchy, order type and customer.
 The gain a proper understanding of the process, the order was broken down into the 4 distinct product hierarchy. In understanding the process, 3 different analysis was carried out; (i) variant analysis, (ii) process flow and (iii) transition matrix.
@@ -85,6 +85,7 @@ The gain a proper understanding of the process, the order was broken down into t
 * <b>Transition matrix</b>: This shows how events transition from one activity to another. The row shows the start activity while the columns shows the preceeding activities. The following were noted:
 
 1. <b>Repeated actvities:</b> There are some activities that are done repeatedly.
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Repeated%20activities.jpg?raw=true)
 
 | No. | Activity | Occurrence | Product hierarchy | No. of customers | No. of orders |
 | :--- | :--- | :---: | :--- | :---: | :---: |
@@ -109,7 +110,7 @@ The gain a proper understanding of the process, the order was broken down into t
 
 
 ## Timing analysis
-![alt text](https://github.com/nkwachiabel/Process-Mining-Road-Traffic-Fine-Management/blob/main/Images/Timing%20analysis.jpg?raw=true)
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Timing%20analysis.jpg?raw=true)
 
 This analysis was done to analyse the bottlenecks in the process relating to timing. To know how long a process should last, we used the median duration of a case as the performance indicator. In the overall order, the median duration was 40 days. About 49.58% of cases did not meet this time target. When broken down into the various product hierarchy, the median duration were as follows.
 
@@ -125,28 +126,28 @@ From the median duration above, this indicates that there is room for improvemen
 For sched.line changed delivery date, this is not clear if the change is coming from the customer or the company. If coming from the company, this means that the company needs to improve its inventory planning to avoid this from happening.
 
 ## Users analysis
-![alt text](https://github.com/nkwachiabel/Process-Mining-Road-Traffic-Fine-Management/blob/main/Images/Case%20details%20page.jpg?raw=true)
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Users%20analysis.jpg?raw=true)
 
 Users were analysed to understand who does what activity in the process. This analysis was focused on the human users and was broken down into the different product hierarchies. The graph at the extreme left shows the users and their roles in the company. This shows that in all the products, there are so many people acting as Customer Service Representatives compared to other roles.
 * In TLC Connectivity, there are only two roles; Logistic operator(User12) and Customer service rep (6 users). The segregation of duties shows that the customer service rep can perform all activities while the Logistic operator only performs the Header Block Removed activity. The most active customer service rep is User 20.
-* In TLC OPtical cables, there are more roles; Material planner (User75), IT HQ Logistic (User74), External fiber sales logistic (User38), D.C. Manager, Corporate credit manager (User57), Accessories manager, credit analyst (User58, User59), customer service manager (User13, User19,User28), logistic operator (User12, User29, User34, User70), customer service rep (21 users), data engineer manager, design engineer, intercompany planner (User21), local IT (User25, User36, User41), master scheduler (User31, User32, User33), production planner (User42), logistic manager (User35, User44), buyer (User49), Cut line team leader (User72) and product manager (User48). No user handles more than two roles. This shows appropriate segregation of duties and no one user has too much workload. There are 8 users where the role == empty. They handle the Delivery, CTR Block removed activities. This analysis shows that there is a user tagged Buyer and the only actvity this user does is to reschedule the delivery date. The customer service rep can do all activities.
+* In TLC Optical cables, there are more roles; Material planner (User75), IT HQ Logistic (User74), External fiber sales logistic (User38), D.C. Manager, Corporate credit manager (User57), Accessories manager, credit analyst (User58, User59), customer service manager (User13, User19,User28), logistic operator (User12, User29, User34, User70), customer service rep (21 users), data engineer manager, design engineer, intercompany planner (User21), local IT (User25, User36, User41), master scheduler (User31, User32, User33), production planner (User42), logistic manager (User35, User44), buyer (User49), Cut line team leader (User72) and product manager (User48). No user handles more than two roles. This shows appropriate segregation of duties and no one user has too much workload. There are 8 users where the role == empty. They handle the Delivery, CTR Block removed activities. This analysis shows that there is a user tagged Buyer and the only actvity this user does is to reschedule the delivery date. The customer service rep can do all activities.
 * TLC Optical fibres has 4 active roles; NA Fiber Sales and service manager (User16), External fiber sales logistic (User38), customer service representative (User43, User51, User9) and corporate credit manager (User57). Similar to the above, the customer service rep does all activities. The corporate credit manager releases document for credit, external fiber sales logistic handles the sched.line changed delivery date and LgstCheckOnConfDat removed activity. In this product, User9 does majority of the work.
 * Finally, TLC Optical ground cables has 8 active roles; master scheduler, logistic operator, external fiber sales logistic, data engineer manager, design engineer, customer service rep, customer service manager. As usual, customer service rep performs all activities, customer service manager does only Line creation, etc.
 * The Handover of work between users shows how tasks are handed over between the various roles. For example, in the above, the customer service manager works only with the customer service rep, while the customer service rep handsover work to everyother person except the external fiber sales logistic.
 
 
 ## Customer details
-![alt text](https://github.com/nkwachiabel/Process-Mining-Road-Traffic-Fine-Management/blob/main/Images/Case%20details%20page.jpg?raw=true)
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Customer%20details.jpg?raw=true)
 
 This page shows information relating to a particular customer by using the filter at the top left of the screen.
 
 ## Order details
-![alt text](https://github.com/nkwachiabel/Process-Mining-Road-Traffic-Fine-Management/blob/main/Images/Case%20details%20page.jpg?raw=true)
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Order%20details.jpg?raw=true)
 
 This page shows information relating to a particular case by using the filter at the top right of the screen.
 
-## Uncompleted cases
-![alt text](https://github.com/nkwachiabel/Process-Mining-Road-Traffic-Fine-Management/blob/main/Images/Case%20details%20page.jpg?raw=true)
+## Open orders
+![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/branch1/Images/Open%20orders.jpg?raw=true)
 
 This page shows information relating to incomplete cases. These are cases which starts from Line creation but does not end in Good issue or is not rejected. From the eventlog, there are 8,908 uncompleted orders with total value of $1,150.69m. We can further split this uncompleted orders into two categories; Services and Products. 
 
@@ -155,15 +156,11 @@ This page shows information relating to incomplete cases. These are cases which 
 * The total number of orderd which do not have Line creation as the latest activity is 5,568. LgstCheckOnConfDat Removed is the highest last activity which amounts to 37% of these orders, followed by Delivery (34.63%) and Sched.Line Changed Delivery Date (13%).
 * This page can be used to track open orders to monitor cases which are over their expected days.
 
-5,568
-
 # Process improvement
 Based on the analysis, areas for improvement were identified such as:
-* Process redesign: One of the areas of improvement can be understanding who does what activity. From the event log, it appears that the prefect does all the activities. This can be misleading as there can be human error or delay in inputing this event into the system. Activities such as Appeal to judge and appeal to prefecture should be done by the offender and the time this is done should be indicated.
-* Automating send to credit agency: The send to credit agency can be automated if certain conditions are met. For example, when a fine is creates, sent, no appeal and no payment made after a certain number of days. It makes the process easier and can help in early collection of fines by the collection agents. This will be relevant especially considering the fact that people move houses frequently and leaving it too long can lead to loss of fines.
-* Avoid delaying sending fines: A lot of fines were not sent within the 90 days fime frame. This is because while the prefect is outside on their duty post, they might not have the time to carry out other activities. I would suggest that there should be a segregation of duties between the prefects who create the fine and the person who sends the fine to the offender to avoid this delay. 
-* Improved communication: There were 3,889 times where a penalty was added after a payment was made and two cases where payment was made but still sent to the credit agencies. I think this either is as a result of delay in communication between the payment receiver and the prefect, or the prefect do not update the case with the payment on time to avoid triggering a penalty.
-* Real-time dashboard: A real-time dashboard should be made available for each prefect to monitor those fines issued by the prefect. This dashboard should include key metrics to track their fines and avoid deviating from the expected process. This would help in reducing processing times and improved overall process efficiency.
+* <b>Process redesign</b>: From the process discovery, it can be seen that some controls should be put in place. There are cases where blocks were set but Delivery still occured and goods were issued. Additional controls should be put in place to avoid this.
+* <b>Segregation of duties</b>The customer service representatives carry out all the activities. This shows that there is lack of segregation of duties and this should be avoided to mitigate fraud. There are a lot of customer service representatives. One option can be to move some of the customer service representatives who posses the skills to carry out other roles to other departments. For example, despite the fact that customer service reps can do every activity, in TLC connectivity, User20 still does most of the work. Segregating the duties will reduce the burden on User20 to ensure other activities are not taking much time.
+* Real-time dashboard: A real-time dashboard should be made available for those open cases to be monitored. This dashboard should include key metrics to ensure that they are not deviating from the expected process and reminders should be sent to process owners to ensure compliance. This would help in reducing processing times and improved overall process efficiency.
 
 # Limitation
 No process owner was reached out to confirm the validity of the expected process
