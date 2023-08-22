@@ -109,7 +109,7 @@ The gain a proper understanding of the process, the order was broken down into t
 * <b>Process benchmarking</b>
 ![alt text](https://github.com/nkwachiabel/Process-Mining-Order-to-cash-IBM/blob/main/Images/Process%20benchmarking.jpg?raw=true)
 
-The process benchmarking page helps to compare different process variants using various filters; Order type, Product hierarchy, Delayed order or not. It also contains some metrics such as the median order fulfilment time, on-time order rate, etc. This shows the comparison between the most occuring variants in TLC Optical Cables and TLC Optical Fibres product. We can see that while the TLC optical median fulfilment time for Variant 1 is 60 days, it is 41 days for TLC Optical Fibres. A possible explanation might be the inclusion of Header Block Removed activity in TLC Optical Cables product. 
+The process benchmarking page helps to compare different process variants using various filters; Order type, Product hierarchy, Delayed order or not. It also contains some metrics such as the median order fulfilment time, on-time order rate, etc. This shows the comparison between the most occuring variants in TLC Optical Cables and TLC Optical Fibres product. We can see that while the TLC optical median fulfilment time for Variant 1 is 60 days, it is 41 days for TLC Optical Fibres. The reason for this as we can see in the above is that despite the fact that the Header Block Removed activity in TLC Optical Cables product is done in less than a day, more time is spent in the LgstCheckOnConfDat Removed activity compared to TLC Optical Fibres product. 
 
 
 ## Timing analysis
